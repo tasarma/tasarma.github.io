@@ -14,47 +14,43 @@ on:
 # Cancel older runs on the same PR if a new commit comes in
 concurrency:
   group: preview-${{ github.ref }}
-  cancel-in-progress: false
+  cancel-in-progress: true # Changed to true so new commits override old runs
 
 jobs:
-  # JOB 1: Handle Pull Request Previews (Traditional Git branch method)
-  # JOB 1: Handle Pull Request Previews (Traditional Git branch method)
-  # TODO
-  # Check what's the problem
-  # pr_preview:
-  #   if: github.ref != 'refs/heads/main'
-  #   runs-on: ubuntu-latest
-  #   permissions:
-  #     contents: write # Needed to push preview files to a branch
-  #     pull-requests: write # Needed to comment the link on the PR
-  #   # Note: NO "environment: github-pages" block here!
-  #   steps:
-  #     - name: Checkout with Submodules
-  #       uses: actions/checkout@v4
-  #       with:
-  #         submodules: "recursive"
-
-  #     - name: Install Zola
-  #       if: github.event.action != 'closed'
-  #       run: sudo snap install --edge zola
-
-  #     - name: Build Preview Site
-  #       if: github.event.action != 'closed'
-  #       run: |
-  #         zola build --drafts --base-url https://${{ github.repository_owner }}.github.io/${{ github.event.repository.name }}/pr-preview/pr-${{ github.event.number }}/
-
-  #     - name: Deploy PR Preview
-  #       uses: rossjrw/pr-preview-action@v1
-  #       with:
-  #         source-dir: ./public/
-
-  # JOB 2: Handle Live Production (Modern, branchless Native API method)
-  production_deploy:
-    if: github.ref == 'refs/heads/main'
+  # JOB 1: Handle Pull Request Previews
+  pr_preview:
+    if: github.event_name == 'pull_request' # Explicitly target PR events
     runs-on: ubuntu-latest
     permissions:
-      pages: write # Required to push direct to GitHub's native hosting
-      id-token: write # Required for security validation
+      contents: write
+      pull-requests: write
+    steps:
+      - name: Checkout with Submodules
+        uses: actions/checkout@v4
+        with:
+          submodules: "recursive"
+
+      - name: Install Zola
+        if: github.event.action != 'closed'
+        run: sudo snap install --edge zola
+
+      - name: Build Preview Site
+        if: github.event.action != 'closed'
+        run: |
+          zola build --drafts --base-url https://${{ github.repository_owner }}.github.io/${{ github.event.repository.name }}/pr-preview/pr-${{ github.event.number }}/
+
+      - name: Deploy PR Preview
+        uses: rossjrw/pr-preview-action@v1
+        with:
+          source-dir: ./public/
+
+  # JOB 2: Handle Live Production (Only runs on push to main)
+  production_deploy:
+    if: github.event_name == 'push' && github.ref == 'refs/heads/main' # Enforce push event only
+    runs-on: ubuntu-latest
+    permissions:
+      pages: write
+      id-token: write
     environment:
       name: github-pages
     steps:
