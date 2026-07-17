@@ -1,0 +1,67 @@
+base_url = "https://tasarma.github.io/personal-blog/"
+title = "Mahmut's Blog"
+theme = "apollo"
+description = "Systems programming, Rust, Python, 3D Computer Vision, Maps, and open source by Mahmut Tasar"
+build_search_index = true
+generate_feeds = true
+compile_sass = true
+minify_html = true
+default_language = "en"
+taxonomies = [
+  { name = "tags", feed = true },
+  { name = "categories", feed = true },
+]
+
+[search]
+include_title = true
+include_description = true
+include_path = true
+include_content = true
+index_format = "elasticlunr_json"
+
+[markdown.highlighting]
+style = "class"
+light_theme = "github-light"
+dark_theme = "github-dark"
+error_on_missing_language = true
+
+[extra]
+toc = true
+use_cdn = false
+favicon = "/icon/favicon.png"
+theme = "toggle"              # light, dark, auto, toggle, toggle-auto
+fancy_code = true
+dynamic_note = true           # a note that can be toggled
+mathjax = true
+comment = true
+
+fediverse = false      # author attribution
+fediverse_creator = "" # e.g. @user@instance
+
+menu = [
+  { name = "Home", url = "/", weight = 1 },
+  { name = "Posts", url = "/posts", weight = 2 },
+  { name = "Projects", url = "/projects", weight = 3 },
+  { name = "Categories", url = "/categories", weight = 4 },
+]
+
+# Social links configuration
+socials = [
+  { name = "github", url = "https://github.com/tasarma", icon = "github" },
+  { name = "linkedin", url = "https://www.linkedin.com/in/mhmtsr/", icon = "linkedin" },
+]
+
+stylesheets = [
+  "custom.css", # Loads /static/custom.css automatically
+]
+
+[extra.taxonomies]
+sort_by = "page_count" # e.g. name, page_count
+reverse = true
+
+[extra.analytics]
+enabled = false
+
+# [extra.analytics.umami]
+# website_id = "43929cd1-1e83...."
+# host_url = "https://stats.mywebsite.com" # default: https://api-gateway.umami.dev/
