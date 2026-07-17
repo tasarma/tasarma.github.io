@@ -1,4 +1,4 @@
-base_url = "https://tasarma.github.io/personal-blog/"
+base_url = "https://tasarma.github.io/"
 title = "Mahmut's Blog"
 theme = "apollo"
 description = "Systems programming, Rust, Python, 3D Computer Vision, Maps, and open source by Mahmut Tasar"
