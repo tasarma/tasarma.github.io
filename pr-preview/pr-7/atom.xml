@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom" xml:lang="en">
+    <title>Mahmut&#x27;s Blog</title>
+    <subtitle>Systems programming, Rust, Python, 3D Computer Vision, Maps, and open source by Mahmut Tasar</subtitle>
+    <link rel="self" type="application/atom+xml" href="https://tasarma.github.io/tasarma.github.io/pr-preview/pr-7/atom.xml"/>
+    <link rel="alternate" type="text/html" href="https://tasarma.github.io/tasarma.github.io/pr-preview/pr-7/"/>
+    <generator uri="https://www.getzola.org/">Zola</generator>
+    <updated>2026-07-17T00:00:00+00:00</updated>
+    <id>https://tasarma.github.io/tasarma.github.io/pr-preview/pr-7/atom.xml</id>
+    <entry xml:lang="en">
+        <title>Personal Blog</title>
+        <published>2026-07-17T00:00:00+00:00</published>
+        <updated>2026-07-17T00:00:00+00:00</updated>
+        
+        <author>
+          <name>
+            
+              Unknown
+            
+          </name>
+        </author>
+        
+        <link rel="alternate" type="text/html" href="https://tasarma.github.io/tasarma.github.io/pr-preview/pr-7/projects/personal-blog/"/>
+        <id>https://tasarma.github.io/tasarma.github.io/pr-preview/pr-7/projects/personal-blog/</id>
+        
+        <content type="html" xml:base="https://tasarma.github.io/tasarma.github.io/pr-preview/pr-7/projects/personal-blog/">&lt;p&gt;For a while, I wanted to have my own website, but I didn&#x27;t want to build everything from scratch. I was looking for something that was ready to use and easy to get started with.&lt;&#x2F;p&gt;
+&lt;p&gt;Thanks to &lt;a rel=&quot;external&quot; href=&quot;https:&#x2F;&#x2F;blog.orhun.dev&#x2F;&quot;&gt;Orhun Parmaksız&lt;&#x2F;a&gt; that introduced me to &lt;a rel=&quot;external&quot; href=&quot;https:&#x2F;&#x2F;www.getzola.org&#x2F;&quot;&gt;Zola&lt;&#x2F;a&gt;, a static site generator written in Rust, and it seemed like the perfect fit.&lt;&#x2F;p&gt;
+&lt;h1 id=&quot;apollo&quot;&gt;Apollo&lt;&#x2F;h1&gt;
+&lt;p&gt;Zola offers &lt;a rel=&quot;external&quot; href=&quot;https:&#x2F;&#x2F;www.getzola.org&#x2F;themes&#x2F;&quot;&gt;many themes&lt;&#x2F;a&gt; that you can choose. I decided to go with &lt;a rel=&quot;external&quot; href=&quot;https:&#x2F;&#x2F;www.getzola.org&#x2F;themes&#x2F;apollo&#x2F;&quot;&gt;Apollo&lt;&#x2F;a&gt; because I like its minimalistic and modern design.&lt;&#x2F;p&gt;
+&lt;h1 id=&quot;how-to-set-it-up&quot;&gt;How to Set It Up&lt;&#x2F;h1&gt;
+&lt;p&gt;To set everything up, I followed &lt;a rel=&quot;external&quot; href=&quot;https:&#x2F;&#x2F;blog.orhun.dev&#x2F;setting-up-this-blog&#x2F;&quot;&gt;this blog post&lt;&#x2F;a&gt; by Orhun Parmaksız along with the Apollo documantation. Everything I needed was already covered there.&lt;&#x2F;p&gt;
+</content>
+        
+    </entry>
+</feed>
