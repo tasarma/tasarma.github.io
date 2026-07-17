@@ -18,12 +18,14 @@ concurrency:
 
 jobs:
   # JOB 1: Handle Pull Request Previews (Traditional Git branch method)
+  # JOB 1: Handle Pull Request Previews (Traditional Git branch method)
   pr_preview:
     if: github.ref != 'refs/heads/main'
     runs-on: ubuntu-latest
     permissions:
-      contents: write
-      pull-requests: write
+      contents: write # Needed to push preview files to a branch
+      pull-requests: write # Needed to comment the link on the PR
+    # Note: NO "environment: github-pages" block here!
     steps:
       - name: Checkout with Submodules
         uses: actions/checkout@v4
