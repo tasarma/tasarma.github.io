@@ -5,7 +5,7 @@ weight = 1
 date = 2026-07-17
 
 [extra]
-local_image = "apollo.webp"
+cloudinary_image = "v1784382554/apollo_mkq2lo"
 github = "https://github.com/tasarma/tasarma.github.io"
 demo = "https://tasarma.github.io/"
 tags = ["rust", "scss", "javascript", "apollo"]
