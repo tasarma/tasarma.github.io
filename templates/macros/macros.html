@@ -1,123 +1,59 @@
-{% macro list_post(page) %} {% set post_url = page.extra.link_to |
-default(value=page.permalink) %}
+{% macro list_post(page) %}
+{% set post_url = page.extra.link_to | default(value=page.permalink) %}
 
-<li
-  class="custom-post-item"
-  style="
-    display: grid;
-    grid-template-columns: 110px 1fr;
-    column-gap: 1rem;
-    row-gap: 0.5rem;
-    margin-bottom: 2.5rem;
-    list-style: none;
-  "
->
-  <!-- Left Side: Chronology & Stats -->
-  <div
-    class="post-left-meta"
-    style="display: flex; flex-direction: column; gap: 0.25rem"
-  >
-    <time style="font-family: monospace; opacity: 0.8; font-size: 0.95rem">
-      {{ page.date | date(format="%Y-%m-%d") }}
-    </time>
+<li class="post-item">
+  <div class="post-left-meta">
+    <time class="post-date">{{ page.date | date(format="%Y-%m-%d") }}</time>
     {% if page.reading_time %}
-    <span
-      class="reading-time"
-      style="font-size: 0.85rem; opacity: 0.7; white-space: nowrap"
-    >
-      ⏳ {{ page.reading_time }} min read
-    </span>
+      <span class="post-reading-time">{{ page.reading_time }} min read</span>
     {% endif %}
   </div>
 
-  <!-- Right Side: Content Stack -->
-  <div
-    class="post-right-content"
-    style="display: flex; flex-direction: column; gap: 0.4rem"
-  >
-    <!-- Title: Forced underline & border clearance -->
-    <h1
-      class="title"
-      style="
-        margin: 0;
-        font-size: 1.25rem;
-        line-height: 1.3;
-        font-weight: normal;
-      "
-    >
-      <a
-        href="{{ post_url | safe }}"
-        style="
-          text-decoration: none !important;
-          border-bottom: none !important;
-          font-weight: normal;
-        "
-      >
-        {{ page.title }} {% if page.extra.link_to %} ↗ {% endif %}
+  <div class="post-right-content">
+    <h1 class="post-title">
+      <a href="{{ post_url | safe }}">
+        {{ page.title }} {% if page.extra.link_to %}↗{% endif %}
       </a>
-
       {% if page.draft %}
-      <span
-        class="draft-label"
-        style="
-          font-size: 0.75rem;
-          margin-left: 0.5rem;
-          padding: 2px 6px;
-          background: #ff4757;
-          color: white;
-          border-radius: 3px;
-          vertical-align: middle;
-        "
-        >DRAFT</span
-      >
+        <span class="draft-label">DRAFT</span>
       {% endif %}
     </h1>
 
-    <!-- Indented Group -->
-    <div
-      class="post-body-group"
-      style="
-        margin-left: 1.2rem;
-        display: flex;
-        flex-direction: column;
-        gap: 0.4rem;
-      "
-    >
-      <div
-        class="description"
-        style="margin: 0; opacity: 0.85; line-height: 1.5; font-size: 0.95rem"
-      >
-        {% if page.description %} {{ page.description }} {% elif page.summary %}
-        {{ page.summary | safe }}&hellip; {% else %} {% set hide_read_more =
-        true %} {% endif %}
-      </div>
-
-      {% if not hide_read_more %}
-      <!-- Read More: Forced underline & border clearance -->
-      <div class="readmore-container">
-        <a
-          class="readmore"
-          href="{{ post_url | safe }}"
-          style="
-            font-size: 0.9rem;
-            font-weight: normal;
-            text-decoration: none !important;
-            border-bottom: none !important;
-          "
-        >
-          {% if page.extra.link_to %} Read original &gt;&gt; {% else %} Read
-          More &gt;&gt; {% endif %}
-        </a>
-      </div>
+    <div class="post-description">
+      {% if page.description %}
+        {{ page.description }}
+      {% elif page.summary %}
+        {{ page.summary | safe }}&hellip;
+      {% else %}
+        {% set hide_read_more = true %}
       {% endif %}
     </div>
+
+    {% if not hide_read_more %}
+      <div class="readmore-container">
+        <a class="readmore" href="{{ post_url | safe }}">
+          {% if page.extra.link_to %}Read original →{% else %}Read more →{% endif %}
+        </a>
+      </div>
+    {% endif %}
   </div>
 </li>
-{% endmacro list_post %} {% macro list_posts(pages) %}
-<ul style="padding: 0; margin: 0">
-  {%- for page in pages %} {{ post_macros::list_post(page=page) }} {% endfor -%}
+{% endmacro list_post %}
+
+{% macro list_posts(pages) %}
+<ul class="post-items">
+  {%- for page in pages %}
+    {{ post_macros::list_post(page=page) }}
+  {% endfor -%}
 </ul>
-{% endmacro list_posts %} {% macro page_header(title) %} {% if title %}
+{% endmacro list_posts %}
+
+{% macro page_header(title) %}
+{% if title %}
 <div class="page-header">{{ title }}</div>
-{% endif %} {% endmacro page_header %} {% macro site_title() %} {{ config.title
-| default(value="Home") }} {% endmacro %}
+{% endif %}
+{% endmacro page_header %}
+
+{% macro site_title() %}
+{{ config.title | default(value="Home") }}
+{% endmacro %}

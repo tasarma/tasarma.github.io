@@ -1,0 +1,472 @@
+/* =========================================================================
+   custom.css
+   -------------------------------------------------------------------------
+   A "professional editorial" restyle of the Apollo theme, inspired by the
+   clean, confident, whitespace-first look of lpalmieri.com.
+
+   Loaded automatically by Zola after the theme's compiled Sass because it
+   is listed in `extra.stylesheets` in zola.toml. Everything here works by
+   overriding the theme's CSS custom properties + a handful of targeted
+   selectors, so it survives theme (submodule) updates.
+   ========================================================================= */
+
+/* -------------------------------------------------------------------------
+   1. Design tokens
+   ----------------------------------------------------------------------- */
+:root {
+  --page-width: 760px;      /* narrower, more readable measure than 920px */
+  --wide-width: 980px;      /* used for cards/projects grid */
+  --line-height: 1.65;
+
+  /* Editorial type pairing: a refined serif for headings, a humanist
+     sans for body copy. Falls back gracefully if the theme's bundled
+     fonts fail to load. */
+  --header-font: "Source Serif 4", "Iowan Old Style", "Georgia", "ZedDisplayFtl", serif;
+  --text-font: -apple-system, BlinkMacSystemFont, "Inter", "Helvetica Neue", "ZedTextFtl", Arial, sans-serif;
+  --mono-text-font: "Jetbrains Mono", ui-monospace, SFMono-Regular, Menlo, monospace;
+  --code-font: var(--mono-text-font);
+}
+
+:root.light {
+  --bg-0: #fbfaf8;
+  --bg-1: #f3f1ec;
+  --bg-2: #e9e6de;
+
+  --text-0: #1c1c1a;
+  --text-1: #55534d;
+  --text-2: #85817a;
+
+  --border-color: #e2ded4;
+
+  --primary-color: #2f4b91;   /* quiet, confident blue instead of coral */
+  --hover-color: #fbfaf8;
+
+  --icon-filter: none;
+}
+
+:root.dark {
+  --bg-0: #121316;
+  --bg-1: #191b1f;
+  --bg-2: #24262b;
+
+  --text-0: #ece9e2;
+  --text-1: #b3b0a7;
+  --text-2: #837f76;
+
+  --border-color: #2c2e33;
+
+  --primary-color: #8aa6ff;
+  --hover-color: #121316;
+
+  --icon-filter: invert(1);
+}
+
+/* -------------------------------------------------------------------------
+   2. Base rhythm
+   ----------------------------------------------------------------------- */
+html {
+  letter-spacing: 0.005em;
+}
+
+body {
+  padding: 1.5rem;
+}
+
+body .content {
+  padding-top: 0.5rem;
+}
+
+/* -------------------------------------------------------------------------
+   3. Headings — drop the terminal "#" markdown prefixes, go editorial
+   ----------------------------------------------------------------------- */
+h1::before,
+h2::before,
+h3::before,
+h4::before,
+h5::before,
+h6::before {
+  content: none !important;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--header-font);
+  font-weight: 600;
+  letter-spacing: -0.01em;
+  color: var(--text-0);
+}
+
+main section.body h2 {
+  font-size: 1.5rem;
+  margin-top: 3rem;
+  margin-bottom: 0.6rem;
+}
+
+main section.body h3 {
+  font-size: 1.15rem;
+  margin-top: 2rem;
+}
+
+.page-header {
+  font-family: var(--header-font);
+  font-weight: 600;
+  font-size: 2.1rem;
+  letter-spacing: -0.015em;
+  margin: 2.5rem 0 1.75rem 0;
+}
+
+/* -------------------------------------------------------------------------
+   4. Links — subtle underline instead of solid color block on hover
+   ----------------------------------------------------------------------- */
+main a {
+  border-bottom: 1px solid var(--primary-color);
+  transition: opacity 0.15s ease;
+}
+
+a:hover {
+  background-color: transparent !important;
+  color: var(--primary-color) !important;
+  opacity: 0.75;
+}
+
+a:hover > code {
+  background-color: transparent !important;
+  color: var(--primary-color) !important;
+  border: none;
+  padding: 0 0.2em;
+}
+
+::selection {
+  background: var(--primary-color);
+  color: var(--hover-color);
+}
+
+/* -------------------------------------------------------------------------
+   5. Navigation — quieter, more spaced out
+   ----------------------------------------------------------------------- */
+nav {
+  padding: 0.25rem 0 1.5rem 0;
+  border-bottom: 1px solid var(--border-color);
+  margin-bottom: 1rem;
+}
+
+nav .left-nav {
+  font-family: var(--header-font);
+  font-weight: 600;
+  font-size: 1.15rem;
+}
+
+nav .right-nav a {
+  font-size: 0.92rem;
+  color: var(--text-1);
+  margin-right: 1.2em !important;
+  border-bottom: none;
+}
+
+nav .right-nav a:hover {
+  color: var(--primary-color) !important;
+}
+
+/* -------------------------------------------------------------------------
+   6. Hero (home page)
+   ----------------------------------------------------------------------- */
+.hero {
+  padding: 1.5rem 0 1rem 0;
+}
+
+.hero-name {
+  font-family: var(--header-font);
+  font-weight: 700;
+  font-size: 2.6rem;
+  letter-spacing: -0.02em;
+  margin: 0 0 0.5rem 0;
+  line-height: 1.15;
+}
+
+.hero-tagline {
+  font-size: 1.25rem;
+  color: var(--text-1);
+  max-width: 34em;
+  margin: 0 0 2.5rem 0;
+  line-height: 1.5;
+}
+
+.hero-pitch {
+  margin-bottom: 2.5rem;
+}
+
+.hero-pitch h2 {
+  font-size: 1.15rem;
+  margin: 1.75rem 0 0.5rem 0;
+}
+
+.hero-pitch h2:first-child {
+  margin-top: 0;
+}
+
+.hero-pitch p {
+  color: var(--text-1);
+  margin: 0;
+  max-width: 40em;
+  line-height: 1.6;
+}
+
+.hero-cta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  margin-bottom: 2rem;
+}
+
+.hero-cta a {
+  border: 1px solid var(--border-color);
+  border-radius: 999px;
+  padding: 0.55em 1.2em;
+  font-size: 0.95rem;
+  font-family: var(--text-font);
+}
+
+.hero-cta a.primary {
+  background: var(--text-0);
+  color: var(--bg-0);
+  border-color: var(--text-0);
+}
+
+.hero-cta a:not(.primary) {
+  color: var(--text-0);
+}
+
+.hero-cta a:hover {
+  opacity: 0.85;
+  color: inherit !important;
+}
+
+.hero-credibility {
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+  padding-top: 1.5rem;
+  border-top: 1px solid var(--border-color);
+  color: var(--text-1);
+  font-size: 0.95rem;
+}
+
+.hero-credibility a {
+  border-bottom: 1px solid var(--primary-color);
+}
+
+/* -------------------------------------------------------------------------
+   7. Post list (writing index)
+   ----------------------------------------------------------------------- */
+.post-items {
+  padding: 0;
+  margin: 0;
+}
+
+.readmore-container {
+  margin-top: 0.5rem;
+}
+
+.readmore {
+  font-size: 0.88rem;
+  border-bottom: none !important;
+  color: var(--text-2);
+}
+
+.readmore:hover {
+  color: var(--primary-color) !important;
+}
+
+.post-item {
+  display: grid;
+  grid-template-columns: 108px 1fr;
+  column-gap: 1.5rem;
+  padding: 1.6rem 0;
+  border-bottom: 1px solid var(--border-color);
+  list-style: none;
+}
+
+.post-item:first-child {
+  padding-top: 0;
+}
+
+.post-item .post-date {
+  font-family: var(--mono-text-font);
+  font-size: 0.82rem;
+  color: var(--text-2);
+  padding-top: 0.2rem;
+}
+
+.post-item .post-reading-time {
+  display: block;
+  font-size: 0.78rem;
+  color: var(--text-2);
+  margin-top: 0.25rem;
+}
+
+.post-item .post-title {
+  margin: 0 0 0.35rem 0;
+  font-family: var(--header-font);
+  font-weight: 600;
+  font-size: 1.2rem;
+  line-height: 1.35;
+}
+
+.post-item .post-title a {
+  border-bottom: none;
+}
+
+.post-item .post-title a:hover {
+  color: var(--primary-color) !important;
+}
+
+.post-item .post-description {
+  color: var(--text-1);
+  margin: 0;
+  font-size: 0.98rem;
+}
+
+.post-item .draft-label {
+  font-size: 0.7rem;
+  margin-left: 0.5rem;
+  padding: 2px 7px;
+  border-radius: 3px;
+  vertical-align: middle;
+  background: var(--primary-color);
+  color: var(--hover-color);
+}
+
+@media (max-width: 600px) {
+  .post-item {
+    grid-template-columns: 1fr;
+    row-gap: 0.4rem;
+  }
+}
+
+/* -------------------------------------------------------------------------
+   8. Cards (projects grid)
+   ----------------------------------------------------------------------- */
+.cards {
+  column-gap: 24px;
+}
+
+.card {
+  border: 1px solid var(--border-color);
+  border-radius: 12px;
+  background: var(--bg-1);
+  transition: border-color 0.15s ease, transform 0.15s ease;
+}
+
+.card:hover {
+  border-color: var(--primary-color);
+  transform: translateY(-2px);
+}
+
+.card-title a {
+  border-bottom: none;
+  font-family: var(--header-font);
+}
+
+.card-title a:hover {
+  color: var(--primary-color) !important;
+}
+
+.card-tagline {
+  color: var(--text-1);
+}
+
+.card-tag {
+  color: var(--text-2);
+}
+
+/* -------------------------------------------------------------------------
+   10. Character shortcodes — restyled as quiet editorial asides instead of
+   comic-style chat bubbles, so they read as commentary/marginalia rather
+   than a cartoon mascot talking.
+   ----------------------------------------------------------------------- */
+.character-note {
+  align-items: flex-start;
+  margin-block: 1.75rem;
+}
+
+.character-note .character-avatar {
+  font-size: 1rem;
+}
+
+/* When no `image` is passed, the theme falls back to printing the raw
+   `name` as text — turn that into a small monogram-style badge instead
+   of bare text floating above the bubble. */
+.character-note .character-avatar:not(:has(img)) {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 2.25em;
+  height: 2.25em;
+  padding: 0 0.6em;
+  border-radius: 999px;
+  background: var(--bg-2);
+  border: 1px solid var(--border-color);
+  font-family: var(--mono-text-font);
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
+  color: var(--text-1);
+}
+
+.character-note .character-avatar img {
+  --head-size: 2.25em;
+  border-radius: 50%;
+  border: 1px solid var(--border-color);
+  object-fit: cover;
+}
+
+.character-note .character-bubble {
+  --character-bubble-bg: var(--bg-1);
+  --character-bubble-border: var(--border-color);
+  border-radius: 0.6rem;
+  padding: 0.75em 1.1em;
+  font-size: 0.95rem;
+  line-height: 1.55;
+  color: var(--text-1);
+}
+
+.character-note .character-bubble p {
+  margin: 0.4em 0;
+}
+
+.character-note .character-bubble p:first-child {
+  margin-top: 0;
+}
+
+.character-note .character-bubble p:last-child {
+  margin-bottom: 0;
+}
+
+/* Give the "speaker" a small caption above the bubble instead of relying
+   purely on avatar position — set this via `name` in the shortcode, e.g.
+   {{ character(name="mahmut", body="...") }} and add a matching
+   .character-mahmut rule below if you want a labelled voice. */
+.character-note.character-right {
+  flex-direction: row-reverse;
+}
+
+.character-note.character-right .character-content {
+  text-align: right;
+}
+
+.character-note.character-right .character-bubble {
+  text-align: left;
+}
+/* -------------------------------------------------------------------------
+   11. Misc polish
+   ----------------------------------------------------------------------- */
+blockquote {
+  border-left: 3px solid var(--primary-color);
+  color: var(--text-1);
+}
+
+.section-content {
+  color: var(--text-1);
+  max-width: 40em;
+  margin-bottom: 1rem;
+}
