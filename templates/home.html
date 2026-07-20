@@ -1,11 +1,40 @@
-{% extends "base.html" %} {% macro home_page(section) %}
+{% extends "base.html" %}
+
+{% macro home_page(section) %}
 <main>
   <article>
-    <section class="body">
-      {{ post_macros::page_header(title=section.title) }} {{ section.content |
-      safe }}
+    <section class="hero">
+      <h1 class="hero-name">{{ section.title }}</h1>
+
+      {% if section.extra.tagline %}
+        <p class="hero-tagline">{{ section.extra.tagline }}</p>
+      {% endif %}
+
+      {% if section.content %}
+        <div class="hero-pitch">{{ section.content | safe }}</div>
+      {% endif %}
+
+      {% if section.extra.cta %}
+        <div class="hero-cta">
+          {% for item in section.extra.cta %}
+            <a href="{{ get_url(path=item.url) }}"
+               class="{% if item.primary %}primary{% endif %}">{{ item.text }} →</a>
+          {% endfor %}
+        </div>
+      {% endif %}
+
+      {% if section.extra.credibility %}
+        <div class="hero-credibility">
+          {% for line in section.extra.credibility %}
+            <div>{{ line | safe }}</div>
+          {% endfor %}
+        </div>
+      {% endif %}
     </section>
   </article>
 </main>
-{% endmacro home_page %} {% block main_content %} {{
-self::home_page(section=section) }} {% endblock main_content %}
+{% endmacro home_page %}
+
+{% block main_content %}
+  {{ self::home_page(section=section) }}
+{% endblock main_content %}
