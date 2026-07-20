@@ -1,0 +1,4 @@
+User-agent: *
+Disallow:
+Allow: /
+Sitemap: https://tasarma.github.io/tasarma.github.io/pr-preview/pr-9/sitemap.xml
