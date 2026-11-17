@@ -9,6 +9,7 @@ cloudinary_image = "v1784382554/apollo_mkq2lo"
 github = "https://github.com/tasarma/tasarma.github.io"
 demo = "https://tasarma.github.io/"
 tags = ["rust", "scss", "javascript", "apollo"]
+comment = true
 +++
 
 For a while, I wanted to have my own website, but I didn't want to build everything from scratch. I was looking for something that was ready to use and easy to get started with.

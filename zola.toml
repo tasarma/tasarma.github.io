@@ -19,6 +19,9 @@ include_path = true
 include_content = true
 index_format = "elasticlunr_json"
 
+[markdown]
+bottom_footnotes = true # render footnotes as a numbered list at the bottom
+
 [markdown.highlighting]
 style = "class"
 light_theme = "github-light"
@@ -33,7 +36,7 @@ theme = "toggle"                   # light, dark, auto, toggle, toggle-auto
 fancy_code = true
 dynamic_note = true                # a note that can be toggled
 mathjax = true
-comment = true
+comment = true # unused by the theme: enable per post with [extra] comment = true
 cloudinary_cloud_name = "vdzpewoc"
 # cloudinary_video = "blog/ui_animation_preview" # Only the Public ID
 
