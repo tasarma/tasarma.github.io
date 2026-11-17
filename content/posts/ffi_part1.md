@@ -6,6 +6,9 @@ date = 2026-07-17
 
 [taxonomies]
 categories = ["Rust"]
+
+[extra]
+comment = true
 +++
 
 I find **Foreign Function Interface (FFI)** quite interesting and important, especially when a project needs to communicate with code written in another language, such as C code.

@@ -6,5 +6,5 @@ sort_by = "date"
 insert_anchor_links = "heading"
 
 [extra]
-comment = true
+comment = true # no effect on posts: each post needs [extra] comment = true in its own front matter
 +++
