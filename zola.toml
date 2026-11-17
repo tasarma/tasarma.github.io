@@ -19,6 +19,9 @@ include_path = true
 include_content = true
 index_format = "elasticlunr_json"
 
+[markdown]
+bottom_footnotes = true # render footnotes as a numbered list at the bottom
+
 [markdown.highlighting]
 style = "class"
 light_theme = "github-light"

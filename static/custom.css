@@ -470,3 +470,39 @@ blockquote {
   max-width: 40em;
   margin-bottom: 1rem;
 }
+
+/* -------------------------------------------------------------------------
+   12. Layout — shift content left
+   The theme splits leftover space equally between an empty left column and
+   the right (TOC) column. Shrink the left one to a gutter, keep the right
+   column at its original width, and let the content take the freed space.
+   ----------------------------------------------------------------------- */
+@media (min-width: 992px) {
+  body .left-content {
+    flex: 0 0 calc((100% - var(--page-width)) / 4);
+  }
+
+  body .content {
+    flex: 1 1 auto;
+    width: auto;
+    max-width: none;
+    min-width: 0;
+  }
+
+  body .right-content {
+    flex: 0 0 calc((100% - var(--page-width)) / 2);
+  }
+}
+
+/* -------------------------------------------------------------------------
+   13. Table of contents — readable hover state
+   The theme sets TOC hover text to --hover-color, which equals the page
+   background here, and section 4 makes link hover backgrounds transparent,
+   so hovered entries became invisible. Use a subtle highlight instead.
+   ----------------------------------------------------------------------- */
+body .toc a:hover {
+  background-color: var(--bg-2) !important;
+  color: var(--primary-color) !important;
+  opacity: 1;
+  border-radius: 3px;
+}
